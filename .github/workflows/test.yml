@@ -3,11 +3,12 @@ name: Test export env
 on: 
   workflow_dispatch:
 
+env:
+  WORD=${GITHUB_REPOSITORY#*/}"-dev"
+
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - name: Export
-        run: |
-          export word=${GITHUB_REPOSITORY#*/}"-dev"
-          echo $word
+        run: echo $WORD
