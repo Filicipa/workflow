@@ -13,7 +13,8 @@ jobs:
       WORD2: ${GITHUB_SHA}"-dev"
     steps:
       - name: Run echo
-        env: WORD3: ${GITHUB_HEAD_REF}
+        env: 
+          WORD3: ${GITHUB_HEAD_REF}
         run: echo $WORD3
       - name: Echo word 1
         run: echo ${{ env.WORD1 }}
