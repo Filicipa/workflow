@@ -10,5 +10,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Export
+      - name: Echo
         run: echo $WORD
