@@ -15,7 +15,7 @@ jobs:
       - name: Run echo
         env: 
           WORD3: ${GITHUB_ACTOR}
-        run: echo $WORD3
+        run: echo ${{ env.WORD3 }}
       - name: Echo word 1
         run: echo ${{ env.WORD1 }}
       - name: Echo word 2
