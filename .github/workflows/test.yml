@@ -12,7 +12,7 @@ jobs:
     env:
       WORD2: ${GITHUB_SHA}"-dev"
     steps:
-      - name: Echo
+      - name: Echo word 1
         run: echo ${{ env.WORD1 }}
-      - name: Echo
+      - name: Echo word 2
         run: echo ${{ env.WORD2 }}
