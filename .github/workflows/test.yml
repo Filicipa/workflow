@@ -15,4 +15,4 @@ jobs:
       - name: Echo
         run: echo ${{ env.WORD1 }}
       - name: Echo
-        run: echo $WORD2
+        run: echo ${{ env.WORD2 }}
