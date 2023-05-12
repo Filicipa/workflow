@@ -14,5 +14,10 @@ jobs:
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH }}
         port: ${{ vars.EC2_SSH_PORT }}
-        script: |
-          echo "Hello SSH" >> test.txt
+        
+    - name: Login to docker hub
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        
+    - name: Run Docker image
+      run: docker run -d -p 80:80 filicipa/circus:latest
