@@ -13,11 +13,7 @@ jobs:
         host: ${{ secrets.EC2_IP }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_SSH }}
-        port: ${{ vars.EC2_SSH_PORT }}
-        
-    - name: Login to docker hub
-      run: |
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        
-    - name: Run Docker image
-      run: docker run -d -p 80:80 filicipa/circus:latest
+        port: ${{ vars.EC2_SSH_PORT }}     
+        script: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} \
+          docker run -d -p 80:80 filicipa/circus:latest
