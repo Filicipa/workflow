@@ -1,0 +1,43 @@
+name: Example
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      name: ${GITHUB_REPOSITORY#*/}"-test"
+      key: ${{ secrets.SSH }}
+      stamp: ${GITHUB_SHA}
+      host: ${{ secrets.NAME_IP }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+      
+      - name: Create .env file
+        run: |
+          echo "PORT=${{ secrets.DEV_PORT }}" >> .env
+
+      - name: Build docker image
+        run: docker build . -t ${{ env.name }}-${{ env.stamp }}
+
+      - name: Save docker image
+        run: docker save -o ${{ env.name }}-${{ env.stamp }}.tar ${{ env.name }}-${{ env.stamp }}
+
+      - name: Copy image to EC2
+        run: |
+          sudo chmod 600 ${key}
+          scp -i ${key} -o "StrictHostKeyChecking no" ${{ env.name }}-${{ env.stamp }}.tar ${{ env.host }}:${{ env.name }}-${{ env.stamp }}.tar
+      
+      - name: Start image
+        run: |
+          ssh -i ${key} -o "StrictHostKeyChecking no" ${{ env.host }} 'sudo docker load -i '${{ env.name }}'-'${{ env.stamp }}'.tar; \
+          sudo docker stop '${{ env.name }}' || true; \
+          sudo docker run -d --restart always -p 3002:3030 --name '${{ env.name }}'-new '${{ env.name }}'-'${{ env.stamp }}'; \
+          sudo docker rm '${{ env.name }}' || true; sudo docker rmi $(sudo docker images -q) || true; \
+          sudo docker rename '${{ env.name }}'-new '${{ env.name }}'; \
+          rm '${{ env.name }}'-'${{ env.stamp }}'.tar'
