@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag Circus:$GITHUB_SHA
+      run: docker build . --file Dockerfile --tag filicipa/circus:$GITHUB_SHA
       
     - name: Docker Push
       uses: opspresso/action-docker@v0.4.0
