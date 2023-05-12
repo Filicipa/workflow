@@ -19,4 +19,4 @@ jobs:
       - name: Echo word 1
         run: echo ${{ env.WORD1 }}
       - name: Echo word 2
-        run: echo ${{ env.WORD2 }}
+        run: echo $(git rev-parse --short HEAD)
