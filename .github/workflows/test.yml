@@ -20,3 +20,5 @@ jobs:
         run: echo ${{ env.WORD1 }}
       - name: Echo word 2
         run: echo ${{ git rev-parse --short HEAD }}
+      - name: Echo variable
+        run: echo ${{ vars.TEST_VAR }}
