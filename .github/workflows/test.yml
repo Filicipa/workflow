@@ -19,4 +19,4 @@ jobs:
       - name: Echo word 1
         run: echo ${{ env.WORD1 }}
       - name: Echo variable
-        run: echo ${{ secrets.TEST_VAR }}
+        run: echo ${{ vars.TEST_VAR }}
