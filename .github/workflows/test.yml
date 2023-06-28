@@ -21,4 +21,4 @@ jobs:
       - name: Echo variable
         run: echo ${{ vars.TEST_VAR }}
       - name: Echo variable like secret
-        run: echo ${{ secret.TEST_VAR }}
+        run: echo ${{ secrets.TEST_VAR }}
