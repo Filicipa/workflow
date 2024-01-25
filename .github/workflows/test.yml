@@ -1,6 +1,9 @@
 name: Test export env
 
 on: 
+  push:
+    tags: 
+      - v*
   workflow_dispatch:
   
 env:
