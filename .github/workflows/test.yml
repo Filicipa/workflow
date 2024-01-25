@@ -22,3 +22,5 @@ jobs:
         run: echo ${{ vars.TEST_VAR }}
       - name: Echo variable like secret
         run: echo ${{ secrets.TEST_VAR }}
+      - name: Show tag
+        run: echo ${{ github.ref_name }}
