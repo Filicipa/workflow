@@ -10,5 +10,5 @@ jobs:
       - name: ZAP-Scan-API
         uses: zaproxy/action-api-scan@v0.7.0
         with:
-          target: 'https://stage-decimated-webstore-api.blaize.technology/'
+          target: 'https://rust-blockchain.blaize.technology/'
           token: ${{ secrets.GITHUB_TOKEN }}
