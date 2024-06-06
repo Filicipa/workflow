@@ -2,7 +2,7 @@ name: Zap baseline
 on: [workflow_dispatch]
 
 jobs:
-  Zap base:
+  Zap-base:
     runs-on: ubuntu-22.04
     steps:
       - name: ZAP-Scan
