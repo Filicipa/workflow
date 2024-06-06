@@ -1,0 +1,14 @@
+name: Zap API
+on: [workflow_dispatch]
+
+jobs:
+  Zap-API:
+    runs-on: ubuntu-22.04
+    permissions:
+      issues: write
+    steps:
+      - name: ZAP-Scan-API
+        uses: zaproxy/action-api-scan@v0.7.0
+        with:
+          target: 'https://stage-decimated-webstore-api.blaize.technology/'
+          token: ${{ secrets.GITHUB_TOKEN }}
