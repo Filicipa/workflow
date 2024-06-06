@@ -1,0 +1,11 @@
+name: Zap baseline
+on: [workflow_dispatch]
+
+jobs:
+  Zap base:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@v0.12.0
+        with:
+          target: 'https://stage-decimated-webstore.blaize.technology/'
