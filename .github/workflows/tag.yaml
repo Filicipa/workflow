@@ -27,4 +27,4 @@ jobs:
       uses: tsickert/discord-webhook@v6.0.0
       with:
         webhook-url: ${{ secrets.WEBHOOK_URL }}
-        content: "@filicipa @find_a_remedy TEST Pipeline success"
+        content: "<@filicipa> <@find_a_remedy> TEST Pipeline success"
