@@ -16,6 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set environment variables
+        run: |
+          echo "name=${{ env.name }}" >> $GITHUB_ENV
+          echo "stamp=${{ env.stamp }}" >> $GITHUB_ENV
+
       - name: Build docker image
         run: docker build . -t ${{ env.name }}:${{ env.stamp }}
 
