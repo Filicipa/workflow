@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: docker-artifact
-          path: ${{ env.name }}.tar
+          path: "${{ env.name }}.tar"
 
   deploy:
     runs-on: ubuntu-latest
