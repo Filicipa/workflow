@@ -7,9 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      name: ${{ GITHUB_REPOSITORY##*/ }}
+      name: ${GITHUB_REPOSITORY##*/}
       key: ${{ secrets.SSH }}
-      stamp: ${{ GITHU_SHA::4}}
+      stamp: ${GITHUB_SHA::7}
       host: ${{ secrets.NAME_IP }}
 
     steps:
