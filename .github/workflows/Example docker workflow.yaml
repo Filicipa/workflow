@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: docker-artifact
-          path: ${{ github.workspace }}/${{ env.name }}:${{ env.stamp }}.tar
+          path: ${{ env.name }}:${{ env.stamp }}.tar
 
   deploy:
     runs-on: ubuntu-latest
