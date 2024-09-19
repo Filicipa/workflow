@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      name: ${GITHUB_REPOSITORY#*/}"-test"
+      name: ${GITHUB_REPOSITORY#*/}-test
       key: ${{ secrets.SSH }}
       stamp: ${GITHUB_SHA}
       host: ${{ secrets.NAME_IP }}
@@ -34,7 +34,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: docker-artifact
-          path: ${{ env.name }}:${{ env.stamp }}.tar
+          path: ${{ github.workspace }}/${{ env.name }}:${{ env.stamp }}.tar
 
   deploy:
     runs-on: ubuntu-latest
