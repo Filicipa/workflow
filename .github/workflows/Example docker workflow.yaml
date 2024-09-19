@@ -1,4 +1,4 @@
-name: Example
+name: Docker Artifact
 
 on:
   workflow_dispatch:
@@ -14,30 +14,26 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-        with:
-          ref: main
-      
-      - name: Create .env file
-        run: |
-          echo "PORT=${{ secrets.DEV_PORT }}" >> .env
+        uses: actions/checkout@v4
 
       - name: Build docker image
-        run: docker build . -t ${{ env.name }}-${{ env.stamp }}
+        run: docker build . -t ${{ env.name }}:${{ env.stamp }}
 
       - name: Save docker image
-        run: docker save -o ${{ env.name }}-${{ env.stamp }}.tar ${{ env.name }}-${{ env.stamp }}
-
-      - name: Copy image to EC2
-        run: |
-          sudo chmod 600 ${key}
-          scp -i ${key} -o "StrictHostKeyChecking no" ${{ env.name }}-${{ env.stamp }}.tar ${{ env.host }}:${{ env.name }}-${{ env.stamp }}.tar
+        run: docker save -o ${{ env.name }}:${{ env.stamp }}.tar ${{ env.name }}:${{ env.stamp }}
       
-      - name: Start image
-        run: |
-          ssh -i ${key} -o "StrictHostKeyChecking no" ${{ env.host }} 'sudo docker load -i '${{ env.name }}'-'${{ env.stamp }}'.tar; \
-          sudo docker stop '${{ env.name }}' || true; \
-          sudo docker run -d --restart always -p 3002:3030 --name '${{ env.name }}'-new '${{ env.name }}'-'${{ env.stamp }}'; \
-          sudo docker rm '${{ env.name }}' || true; sudo docker rmi $(sudo docker images -q) || true; \
-          sudo docker rename '${{ env.name }}'-new '${{ env.name }}'; \
-          rm '${{ env.name }}'-'${{ env.stamp }}'.tar'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: docker-artifact
+          path: ${{ env.name }}:${{ env.stamp }}.tar
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-artifact
+      - name: Display structure of downloaded files
+        run: ls -R
