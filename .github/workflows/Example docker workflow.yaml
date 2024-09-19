@@ -33,7 +33,7 @@ jobs:
           pwd
           echo "ls -la"
           ls -la
-          ================
+          echo "================"
           echo "GITHUB_ENV"
       
       - uses: actions/upload-artifact@v4
