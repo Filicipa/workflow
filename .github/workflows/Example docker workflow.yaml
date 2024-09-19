@@ -25,7 +25,7 @@ jobs:
         run: docker build . -t ${{ env.name }}:${{ env.stamp }}
 
       - name: Save docker image
-        run: docker save -o ${{ env.name }}:${{ env.stamp }}.tar ${{ env.name }}:${{ env.stamp }}
+        run: docker save -o ${{ env.name }}.tar ${{ env.name }}:${{ env.stamp }}
         
       - name: Display structure of downloaded files
         run: |
