@@ -1,0 +1,25 @@
+name: OIDC
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{  secrets.AWS_ACCOUNT_ID }}:role/github-oidc
+          # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-central-1      
+
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync ./index.html ./circus.jpg s3://cp-globula/ --delete      
