@@ -1,7 +1,7 @@
 FROM nginx:latest
 
-COPY index.html /usr/share/nginx/html/
-COPY circus.jpg /usr/share/nginx/html/
+COPY index.html website/usr/share/nginx/html/
+COPY circus.jpg website/usr/share/nginx/html/
 
 EXPOSE 80
 
