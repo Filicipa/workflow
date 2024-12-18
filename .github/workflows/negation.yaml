@@ -11,4 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step
-        run: ls -la website
+        run: |
+          ls -la
+          ls -la website/
