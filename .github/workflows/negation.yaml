@@ -1,0 +1,14 @@
+name: Negation example
+
+on:
+  push:
+    paths: 
+      - "website/**"
+      - "!website/README.md"
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step
+        run: ls -la website
