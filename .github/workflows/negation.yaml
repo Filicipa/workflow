@@ -3,8 +3,7 @@ name: Negation example
 on:
   push:
     paths: 
-      - "website/**"
-      - "!website/README.md"
+      - "website/(?!README.md).*"
 
 jobs:
   example:
