@@ -1,0 +1,16 @@
+name: Downcase
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  Test:
+    runs-on: ubuntu-22.04
+    steps:
+    - name: downcase REPO
+      run: |
+        echo "REPO=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+    
+    - name: Echo
+      run: |
+        echo "${GITHUB_ENV}"
