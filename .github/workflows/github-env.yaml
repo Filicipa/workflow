@@ -14,3 +14,4 @@ jobs:
     - name: Echo
       run: |
         echo "${GITHUB_ENV}"
+        echo "${REPO}"
