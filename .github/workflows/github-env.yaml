@@ -10,8 +10,16 @@ jobs:
     - name: downcase REPO
       run: |
         echo "REPO=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
+        echo "AUTHOR=${GITHUB_ACTOR}" >> ${GITHUB_ENV}
+        echo "ID=${GITHUB_ACTOR_ID}" >> ${GITHUB_ENV}
+        echo "REF=${GITHUB_REF}" >> ${GITHUB_ENV}
+        echo "SHA=${GITHUB_SHA}" >> ${GITHUB_ENV}
     
     - name: Echo
       run: |
         echo "${GITHUB_ENV}"
         echo "${REPO}"
+        echo "${AUTHOR}"
+        echo "${ID}"
+        echo "${REF}"
+        echo "${SHA}"
