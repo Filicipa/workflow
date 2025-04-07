@@ -13,6 +13,7 @@ jobs:
         echo "AUTHOR=${GITHUB_ACTOR}" >> ${GITHUB_ENV}
         echo "ID=${GITHUB_ACTOR_ID}" >> ${GITHUB_ENV}
         echo "REF=${GITHUB_REF}" >> ${GITHUB_ENV}
+        echo "REF_SHORT=${GITHUB_REF##*/}" >> ${GITHUB_ENV}
         echo "SHA=${GITHUB_SHA}" >> ${GITHUB_ENV}
     
     - name: Echo
