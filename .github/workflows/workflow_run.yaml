@@ -1,0 +1,16 @@
+name: Workflow Run
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ['Deploy']
+    types: [completed,requested]
+    branches:
+      - 'main'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send run
+      run: echo "Hello Run workflow"
