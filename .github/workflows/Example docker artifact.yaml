@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      name: ${GITHUB_REPOSITORY##*/,,}
+      name: ${GITHUB_REPOSITORY##*/}
       key: "${{ secrets.SSH }}"
       stamp: ${GITHUB_SHA::7}
       host: ${{ secrets.NAME_IP }}
@@ -18,7 +18,7 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo "name=${{ env.name }}" >> $GITHUB_ENV
+          echo "name=${{ env.name,, }}" >> $GITHUB_ENV
           echo "stamp=${{ env.stamp }}" >> $GITHUB_ENV
 
       - name: Build docker image
