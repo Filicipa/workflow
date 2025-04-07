@@ -23,4 +23,5 @@ jobs:
         echo "${AUTHOR}"
         echo "${ID}"
         echo "${REF}"
+        echo "${REF_SHORT}"
         echo "${SHA}"
