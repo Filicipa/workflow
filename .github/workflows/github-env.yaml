@@ -18,10 +18,10 @@ jobs:
     
     - name: Echo
       run: |
-        echo "${GITHUB_ENV}"
-        echo "${REPO}"
-        echo "${AUTHOR}"
-        echo "${ID}"
-        echo "${REF}"
-        echo "${REF_SHORT}"
-        echo "${SHA}"
+        echo "GITHUB_ENV=${GITHUB_ENV}"
+        echo "REPO=${REPO}"
+        echo "AUTHOR=${AUTHOR}"
+        echo "ID=${ID}"
+        echo "REF=${REF}"
+        echo "REF_SHORT=${REF_SHORT}"
+        echo "SHA=${SHA}"
