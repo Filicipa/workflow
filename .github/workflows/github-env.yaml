@@ -28,4 +28,4 @@ jobs:
         echo "REF=${REF}"
         echo "REF_SHORT=${REF_SHORT}"
         echo "SHA=${SHA}"
-        echo "${{ env.tag }}"
+        echo "${{ env.name }}"
