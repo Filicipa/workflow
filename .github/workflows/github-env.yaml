@@ -2,7 +2,10 @@ name: Downcase
 
 on: 
   workflow_dispatch:
-
+env:
+  name: ${{ github.repository }}
+  tag: ${{ github.sha }}
+  
 jobs:
   Test:
     runs-on: ubuntu-22.04
@@ -25,3 +28,4 @@ jobs:
         echo "REF=${REF}"
         echo "REF_SHORT=${REF_SHORT}"
         echo "SHA=${SHA}"
+        echo "${{ env.tag }}"
