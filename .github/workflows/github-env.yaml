@@ -1,4 +1,4 @@
-name: Downcase
+name: Github ENV
 
 on: 
   workflow_dispatch:
