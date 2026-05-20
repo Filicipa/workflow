@@ -3,3 +3,4 @@ Test tag v1
 Try to major ver
 bump-test
 patch
+major
